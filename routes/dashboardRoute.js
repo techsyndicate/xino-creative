@@ -1,7 +1,11 @@
 const express = require('express')
 const router = express.Router()
-
-router.get('/',(req,res)=>{
+const user = require('../models/userSchema')
+const {
+    checkUser, forwardUser
+} = require('../config/auth')
+router.get('/',checkUser, async(req,res)=>{
+    const user = await user.find({email: req.user.email})
     res.render('dashboard')
 })
 
