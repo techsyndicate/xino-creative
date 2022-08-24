@@ -1,42 +1,14 @@
-const user = require("../models/userSchema");
-const jwt = require("jsonwebtoken");
-
 module.exports = {
-  checkUser: async (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) {
-      return res.redirect("/login");
-    }
-
-    try {
-      const decoded = jwt.verify(token, process.env.token);
-      const savedUser = await user.findById(decoded.id);
-
-      if (!savedUser) {
-        return res.redirect("/login");
-      }
-      req.user = savedUser;
+  ensureAuthenticated: function(req, res, next) {
+    if (req.isAuthenticated()) {
       return next();
-    } catch (e) {
-      console.log(e);
-      return res.redirect("/login");
     }
+    res.redirect('/login');
   },
-  forwardUser: async (req, res, next) => {
-    const token = req.cookies.token;
-    if (!token) {
+  forwardAuthenticated: function(req, res, next) {
+    if (!req.isAuthenticated()) {
       return next();
     }
-    try {
-      const decoded = jwt.verify(token, process.env.token);
-      const savedUser = await user.findById(decoded.id);
-      if (!savedUser) {
-        return next();
-      }
-      req.user = savedUser;
-      return res.redirect("/dashboard");
-    } catch {
-      return next();
-    }
-  },
+    res.redirect('/dashboard');      
+  }
 };

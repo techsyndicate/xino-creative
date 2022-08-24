@@ -1,99 +1,85 @@
 const express = require('express')
 const router = express.Router()
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const user = require('../models/userSchema')
-const {
-    checkUser, forwardUser
-} = require('../config/auth')
+const User = require('../models/userSchema')
+const passport = require('passport')
 
 router.get('/',(req,res)=>{
     res.render('index')
 })
-router.get('/login', forwardUser,(req,res)=>{
+router.get('/login', (req,res)=>{
     res.render('login')
 })
-router.get('/register',forwardUser,(req,res)=>{
+router.get('/register',(req,res)=>{
     res.render('register')
 })
-router.post('/register',async (req,res)=>{
-    const {
-        name,email,password,password2
-    } = req.body;
-    if (password != password2){
-        res.status(400).json({
-            msg : 'passwords do not match'
-        })
-    }
-    const userExisting = await user.findOne({
-        email
-    })
-    if(userExisting){
-        res.status(400).json({
-            msg : 'user already exists'
-        })
-    }
-    const salt = await bcrypt.genSalt(16);
-    const hashedPassword=  await bcrypt.hash(password,salt)
-    const create = new user({
-        name,email, password: hashedPassword
-    })
-    const newUser = await create.save();
-    try{
-        const token = jwt.sign({
-            id: newUser._id,
-        },process.env.token)
-        res.cookie('usertoken',token,{
-            httpOnly: true
-        })
-        console.log('user created')
-        res.redirect('/login')        
-    }
-    catch (e){
-        console.log(e)
-        res.render('error')
-    }
+
+router.post('/register',(req,res)=>{
     console.log(req.body)
-})
-router.post('/login',(req,res)=>{
     const {
-        email, password
-    } = req.body;
-    user.findOne({
-        email
-    })
-    .then(user=>{
-        if(!user){
-            return res.status(400).json({
-                msg: 'User does not exist',
-            })
-        }
-        bcrypt.compare(password,user.password).then(
-            matchingPasswords =>{
-                if(matchingPasswords){
-                    const token = jwt.sign({
-                        id: user._id
-                    }, process.env.token)
-                    res.cookie('usertoken', token,{
-                        httpOnly: true,
-                        maxAge: 1000*60*60*24
-                    })
-                    res.redirect('/dashboard')
-                    
-                }else{
-                    return res.status(400).json({
-                        msg: 'passwords dont match'
-                    })
-                }
-            }
-        ).catch(err=>{
-            if (err) throw err;
+        name, 
+        email,
+        password,
+        password2,
+    } = req.body
+    let errors = []
+    if (password !== password2) {
+        errors.push({msg: 'Passwords do not match'})
+    }
+    if (errors.length > 0) {
+        res.render('register', {
+            errors,
+            name,
+            email,
+            password,
+            password2,
         })
-    })
+    } else {
+        User.findOne({email:email})
+        .then((user)=>{
+            if(user){
+                errors.push({msg: 'Email already exists'})
+                res.render('register', {
+                    errors,
+                    name,
+                    email,
+                    password,
+                    password2,
+                })
+            }
+            else{
+                const newUser = new User({
+                    name,
+                    email,
+                    password
+                })
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if (err) throw err
+                        newUser.password = hash
+                        newUser.save()
+                        .then(user => {
+                            console.log('User saved')
+                            res.redirect('/login')
+                        })
+                        .catch(err => console.log(err))
+                    })
+                })
+            }
+        })
+
+
+    }
 })
-router.get('/logout', async (req,res)=>{
-    res.clearCookie('usertoken')
-    req.user = null
-    res.redirect('/login')
+router.post('/login',  (req,res,next)=>{
+    passport.authenticate('local',{
+        successRedirect: '/dashboard',
+        failureRedirect: '/login',
+    })(req,res,next)
 })
+router.get('/logout',(req,res)=>{
+    req.logout()
+    res.redirect('/')
+})
+
 module.exports = router;
