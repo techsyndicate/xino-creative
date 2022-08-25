@@ -154,7 +154,7 @@ body{
     letter-spacing: 1px;
     text-align: center;
 }
-.optimize form{
+.optimize{
     margin: 5vw;
 }
 #submit{
@@ -198,4 +198,7 @@ body{
     position: absolute;
     transform: scale(0.25) rotate(15deg);
     margin: -60vw 25vw ;
+}
+.optimize-info{
+    margin: 5vw;
 }
