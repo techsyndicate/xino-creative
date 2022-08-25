@@ -1,0 +1,140 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+@font-face {
+    font-family: 'Outfit';
+    src: url('./assets/fonts/Outfit-Regular.otf');
+}
+body{
+    background: #121212;
+    color: #eee;
+    font-family: 'Outfit', sans-serif;
+}
+.logo{
+    width: 3.5vw;
+    height: 3.5vw;
+    background: red;
+    border-radius: 100%;
+    position: absolute;
+}
+.nav{
+    display: flex;
+    width: 100%;
+    padding: 3.5vw;
+}
+.nav ul {
+    margin-top: 1.5vw;
+    margin-left: 75vw;
+    display: flex;
+    list-style: none;
+}
+.nav ul li{
+    margin-left: -1.5vw;
+}
+.nav ul li a{
+    color: #eee;
+    font-size: 1.5vw;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+.landing-div h1{
+    text-align: center;
+    font-size: 3.5vw;
+    letter-spacing: 2px;
+    margin-top: 2.5vw;
+}
+.landing-div p {
+    text-align: center;
+    font-size: 1.35vw;
+    opacity: 0.75;
+    letter-spacing: 1px;
+    margin-top: 2.5vw;
+}
+.landing-div button{
+    background: linear-gradient(45deg, #EFBAFA 10%, #B696F1, #89B8F3, #9BFFFF);
+    background-size: cover;
+    width: 25vw;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2vw;
+    color: #121212;
+    letter-spacing: 1px;
+    display: block;
+    margin: 2vw auto;
+}
+.landing-div img{
+    transform: rotate(25deg) scale(0.35);
+    margin-top: -30vw;
+}
+.product-div{
+    display: flex;
+}
+.product-div #svg{
+    opacity: 0.5;
+    width: 40vw;
+    margin: 2.5vw 2.5vw;
+}
+.product-content h1{
+    font-size: 3vw;
+    letter-spacing: 1px;
+    margin-top: 3.5vw;
+    margin-left: 3.5vw;
+}
+.product-content p{
+    font-size: 1.2vw;
+    margin: 2.5vw 3.5vw;
+    opacity: 0.75;
+    letter-spacing: 1px;
+}
+.product-content h1 span{
+    background: linear-gradient(45deg, #EFBAFA 10%, #B696F1, #89B8F3, #9BFFFF);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+#bulb,#home,#tablet{
+    position: absolute;
+    transform: rotate(-15deg) scale(0.35);
+    margin: -25vw -25vw;
+}
+#home{
+    transform: rotate(0deg) scale(0.35);
+    margin: -30vw -30vw;
+}
+#tablet{
+    transform: rotate(0deg) scale(0.5);
+    margin: -15vw -25vw;
+}
+.footer-div{
+    height: 10vw;
+    padding: 10px;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 2.5vw;
+    background: linear-gradient(45deg, #EFBAFA 10%, #B696F1, #89B8F3, #9BFFFF);
+    border-radius: 10px;
+    color: #121212;
+}
+.logo-footer{
+    display: flex;
+    margin: 2.5vw 2.5vw;
+}
+.logo-pic{
+    height: 4vw;
+    width: 4vw;
+    background: red;
+    border-radius: 100%;
+}
+.logo-desc{
+    margin-top: .5vw;
+    margin-left: 2.5vw;
+}
+.footer-div p{
+    font-size: 1.5vw;
+    position: absolute;
+    margin: 1.25vw 65%;
+}
