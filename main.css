@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     width: 100%;
+    scroll-behavior: smooth;
 }
 @font-face {
     font-family: 'Outfit';
@@ -16,7 +17,8 @@ body{
 .logo{
     width: 3.5vw;
     height: 3.5vw;
-    background: red;
+    background: url('./assets/images/logo.png');
+    background-size: cover;
     border-radius: 100%;
     position: absolute;
 }
@@ -91,7 +93,7 @@ body{
     opacity: 0.75;
     letter-spacing: 1px;
 }
-.product-content h1 span{
+.product-content h1 span,.optimization-div h1 span{
     background: linear-gradient(45deg, #EFBAFA 10%, #B696F1, #89B8F3, #9BFFFF);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
@@ -126,7 +128,8 @@ body{
 .logo-pic{
     height: 4vw;
     width: 4vw;
-    background: red;
+    background: url('./assets/images/logo.png');
+    background-size: cover;
     border-radius: 100%;
 }
 .logo-desc{
@@ -137,4 +140,62 @@ body{
     font-size: 1.5vw;
     position: absolute;
     margin: 1.25vw 65%;
+}
+.optimization-div h1 {
+    font-size: 3.5vw;
+    text-align: center;
+    margin-top: 2.5vw;
+    letter-spacing: 1.5px;
+}
+.optimization-div p{
+    font-size: 1.2vw;
+    margin-top: 2.5vw;
+    opacity: 0.75;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.optimize form{
+    margin: 5vw;
+}
+#submit{
+    background: linear-gradient(45deg, #EFBAFA 10%, #B696F1, #89B8F3, #9BFFFF);
+    background-size: cover;
+    width: 25vw;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5vw;
+    color: #121212;
+    letter-spacing: 1px;
+}
+.optimize input{
+    width: 35vw;
+    padding: 10px;
+    font-family: 'Outfit', sans-serif;
+    border-radius: 5px;
+}
+.optimize input{
+    width: 35vw;
+    padding: 10px;
+    font-family: 'Outfit', sans-serif;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 1vw;
+    color: #eee;
+}
+.optimize input:focus{
+    outline: none;
+}
+.optimization-form{
+    margin-top: 3.5vw;
+}
+.optimization-form form{
+    margin-left: 5vw;
+}
+#greenbulb{
+    position: absolute;
+    transform: scale(0.25) rotate(15deg);
+    margin: -60vw 25vw ;
 }

@@ -8,93 +8,54 @@
         Visarkh
     </title>
     <link rel="stylesheet" href="./main.css">
+    <link rel="icon" href="./assets/images/logo.png">
 </head>
 <body>
     <div class="nav">
         <div class="logo"></div>
-        <ul>
+        <ul style="margin-left: 85%;">
             <li>
-                <a href="#">About</a>
+                <a href="#a">About</a>
             </li>
             <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">About</a>
+                <a href="./index.html">Home</a>
             </li>
         </ul>
     </div>
-    <div class="landing-div">
-        <h1>
-           <q>Ghar Ghar Ki Yahi Kahani...</q>
+    <div class="optimization-div">
+        <h1 id="a">
+            Why our <span>algorithm</span>?
         </h1>
         <p>
-            Visarkh does everything you need to save electricity in your house. Not only save money but <br>
-            also save the environment around you.
+            Our algorithm uses live real-time data from advanced sensors placed on electrical devices to calibrate <br>
+            parameters and accordingly determines the optimal usage for electricity
         </p>
-        <button>
-            Optimize your electricity
-        </button>
-        <img src="./assets/images/bulb.svg" alt="">
     </div>
-    <div class="product-div" style="margin-top: -25vw;">
-        <img src="./assets/images/blob1.svg" id="svg">
-        <img src="./assets/images/eco-bulb.png" id="bulb" alt="">
-        <div class="product-content">
-            <h1>
-                Providing you energy in various <br>
-                forms to make your lifestyle <br>
-                <span>sustainable and cleaner</span>.
-            </h1>
-            <p>
-                Try out Visarkh's optimization energy system to manage and plan<br>
-                your household's electricity usage with options like solar energy.<br>
-                Personalize it according to your lifestyle.
-            </p>
-        </div>
+    <div class="optimization-form">
+        <form class="optimize" method="post">
+            <div class="optimize-form-grp">
+                <label for="">
+                    Electricity rate
+                </label><br>
+                <input type="text" placeholder="Electricity rate" id="input1">
+            </div> <br>
+            <div class="optimize-form-grp">
+                <label for="">
+                    No. of solar panels installed
+                </label><br>
+                <input type="text" placeholder="Solar Panels" id="input2">
+            </div><br>
+            <div class="optimize-form-grp">
+                <label for="">
+                    Operating cost of solar panels
+                </label><br>
+                <input type="text" placeholder="Cost" id="input3">
+            </div><br>
+            <input type="submit" id="submit" value="Optimize">
+        </form>
+        <img src="./assets/images/green-electricity.png" id="greenbulb" alt="">
     </div>
-    <div class="product-div">
-        <img src="./assets/images/blob1.svg" id="svg">
-        <img src="./assets/images/industry-with-solar-panel.png" id="home" alt="">
-        <div class="product-content">
-            <h1>
-                Providing you energy in various <br>
-                forms to make your lifestyle <br>
-                <span>sustainable and cleaner</span>.
-            </h1>
-            <p>
-                Try out Visarkh's optimization energy system to manage and plan<br>
-                your household's electricity usage with options like solar energy.<br>
-                Personalize it according to your lifestyle.
-            </p>
-        </div>
-    </div>
-    <div class="product-div">
-        <img src="./assets/images/blob1.svg" id="svg">
-        <img src="./assets/images/x_quisite_device.png" id="tablet">
-        <div class="product-content">
-            <h1>
-                Providing you energy in various <br>
-                forms to make your lifestyle <br>
-                <span>sustainable and cleaner</span>. 
-            </h1>
-            <p>
-                Try out Visarkh's optimization energy system to manage and plan<br>
-                your household's electricity usage with options like solar energy.<br>
-                Personalize it according to your lifestyle.
-            </p>
-        </div>
-    </div>
-    <div class="footer-div">
-        <div class="logo-footer">
-            <div class="logo-pic"></div>
-            <div class="logo-desc">
-                <h1>
-                    Visarkh
-                </h1>
-            </div>
-            <p>Ghar Ghar Ki Yahi Kahani</p>
-        </div>
-    </div>
+
 </body>
+<script src="./app.js"></script>
 </html>
